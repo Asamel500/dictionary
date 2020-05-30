@@ -1,5 +1,8 @@
 package com.example.dictionary;
 
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -8,36 +11,40 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class DBhelper  {
-    private static Connection conn;
-    private static Statement statmt;
-    private static ResultSet resSet;
-    private PreparedStatement prepStat;
-    public static void Conn() throws ClassNotFoundException, SQLException
+public class DBhelper {
+    private  Connection conn;
+    private  Statement statmt;
+    private  ResultSet resSet;
+    private  PreparedStatement prepStat;
+    public  void conn() throws ClassNotFoundException
     {
         conn = null;
         Class.forName("org.sqlite.JDBC");
-        conn = DriverManager.getConnection("jdbc:sqlite:TEST1.s3db");
+        try {
+            conn = DriverManager.getConnection("jdbc:sqlite:DBdictianary.db");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
         System.out.println("База Подключена!");
     }
 
-    public static void CreateDB() throws ClassNotFoundException, SQLException
+    public  void createDB() throws ClassNotFoundException, SQLException
     {
         statmt = conn.createStatement();
         statmt.execute("CREATE TABLE if not exists 'dictionary' ('id' INTEGER PRIMARY KEY AUTOINCREMENT, 'EnglishWord' text, RussianWord text );");
 
         System.out.println("Таблица создана или уже существует.");
     }
-    public static void AddWordToDB(Word NewWord) throws SQLException {
+    public  void addWordToDB(Word NewWord) throws SQLException {
         String AddWordQuery ="INSERT INTO 'dictionary' ('EnglishWord', 'RussianWord') VALUES ('?', '?'); ";
-        PreparedStatement prepStat = conn.prepareStatement(AddWordQuery);
+        prepStat = conn.prepareStatement(AddWordQuery);
         prepStat.setString(1,NewWord.getEnglishWord());
         prepStat.setString(2,NewWord.getRussianWord());
         prepStat.executeUpdate();
 
     }
-    public static ArrayList<Word>  ReadAllWord() throws ClassNotFoundException, SQLException
+    public  ArrayList<Word>  readAllWord() throws ClassNotFoundException, SQLException
     {
         resSet = statmt.executeQuery("SELECT * FROM dictionary");
         ArrayList<Word> AllWordDB = new ArrayList<>();
@@ -57,14 +64,17 @@ public class DBhelper  {
         System.out.println("Таблица выведена");
         return AllWordDB;
     }
-    public static void CloseDB() throws ClassNotFoundException, SQLException
+    public  void closeDB() throws ClassNotFoundException
     {
-        conn.close();
-        statmt.close();
-        resSet.close();
+        try {
+            conn.close();
+            statmt.close();
+            resSet.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
 
         System.out.println("Соединения закрыты");
     }
-
-
 }

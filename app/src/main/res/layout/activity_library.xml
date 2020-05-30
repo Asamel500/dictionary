@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Library">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/topLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            android:gravity="center_horizontal">
+
+            <Button
+                android:id="@+id/dictionary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Zero" />
+
+            <Button
+                android:id="@+id/library"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Zero" />
+
+            <Button
+                android:id="@+id/AddWordAC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Zero" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/centerLayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/BottomLayout"
+            app:layout_constraintTop_toBottomOf="@+id/topLayout">
+
+            <ScrollView
+                android:id="@+id/scroll"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </ScrollView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/BottomLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <com.google.android.gms.ads.AdView
+                android:id="@+id/adView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:adSize="SMART_BANNER"
+                app:adUnitId="ca-app-pub-3940256099942544/6300978111" />
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

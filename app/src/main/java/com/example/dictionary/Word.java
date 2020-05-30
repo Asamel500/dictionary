@@ -1,7 +1,7 @@
 package com.example.dictionary;
 
 public class Word {
-    int id;
+    private int id;
     private String EnglishWord,RussianWord;
 
     public int getId() {
