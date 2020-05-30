@@ -2,7 +2,6 @@ package com.example.dictionary;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -27,9 +26,9 @@ public  class AddWordActivity extends AppCompatActivity {
         Button ToLibraryActivityButton = findViewById(R.id.library);
         ToLibraryActivityButton.setOnClickListener(new ToLibraryActivityOnClickListener());
         Button buttonOk = findViewById(R.id.AddWordButton);
-        buttonOk.setOnClickListener(new ButtonAddListner());
-         EnglishWordTextView = findViewById(R.id.EnglishWordText);
-         RussianWordTextView = findViewById(R.id.RussianWordText);
+        buttonOk.setOnClickListener(new ButtonAddListener());
+        EnglishWordTextView = findViewById(R.id.EnglishWordText);
+        RussianWordTextView = findViewById(R.id.RussianWordText);
         mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
@@ -50,7 +49,7 @@ public  class AddWordActivity extends AppCompatActivity {
             startActivity(intent);
         }
     }
-    private class ButtonAddListner implements View.OnClickListener {
+    private class ButtonAddListener implements View.OnClickListener {
 
         @Override
         public void onClick(View v) {
@@ -58,10 +57,14 @@ public  class AddWordActivity extends AppCompatActivity {
             Word word = new Word();
             word.setRussianWord(String.valueOf( RussianWordTextView.getText()));
             word.setEnglishWord(String.valueOf( EnglishWordTextView.getText()));
-            try {
-                helper.addWordToDB(word);
-            } catch (SQLException e) {
-                e.printStackTrace();
+            if (!((word.getRussianWord().equals(""))||( word.getEnglishWord().equals("")))) {
+                try {
+                    RussianWordTextView.setText("");
+                    EnglishWordTextView.setText("");
+                    helper.addWordToDB(word);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }

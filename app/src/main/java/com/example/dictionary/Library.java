@@ -32,7 +32,7 @@ public class Library extends AppCompatActivity {
         ToAddWordActivityButton.setOnClickListener(new ToAddWordActivityOnClickListener());
         Button ToMainActivityButton = findViewById(R.id.dictionary);
         ToMainActivityButton.setOnClickListener(new ToMainActivityOnClickListener());
-        Graphics();
+        DrawAllWordOnActivity();
     }
     private class ToAddWordActivityOnClickListener implements OnClickListener {
 
@@ -63,15 +63,14 @@ public class Library extends AppCompatActivity {
             try {
                 SQLLiteHelper sqlLiteHelper = new SQLLiteHelper(Library.this);
                 sqlLiteHelper.deleteWordOnDB(id);
-                Graphics();
+                scrollView.removeAllViews();
+                DrawAllWordOnActivity();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-         //   Intent intent = new Intent(Library.this, Library.class);
-         //   startActivity(intent);
         }
     }
-    public void Graphics(){
+    public void DrawAllWordOnActivity(){
         SQLLiteHelper sqlLiteHelper = new SQLLiteHelper(this);
         ArrayList<Word> AllWord = sqlLiteHelper.getAllWordOnDB();
         scrollView = findViewById(R.id.scroll);

@@ -1,5 +1,7 @@
 package com.example.dictionary;
 
+import androidx.annotation.Nullable;
+
 public class Word {
     private int id;
     private String EnglishWord,RussianWord;
@@ -33,5 +35,11 @@ public class Word {
 
     public String getRussianWord() {
         return RussianWord;
+    }
+
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        Word word = (Word)obj;
+        return id == word.getId()&&EnglishWord.equals(word.getEnglishWord())&&RussianWord.equals(word.RussianWord);
     }
 }

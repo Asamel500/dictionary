@@ -48,7 +48,7 @@
         android:layout_weight="1"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="@string/EnglishWordText" />
+        android:hint="@string/EnglishWordText" />
 
     <EditText
         android:id="@+id/RussianWordText"
@@ -56,7 +56,8 @@
         android:layout_height="match_parent"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="@string/RussianWordText" />
+        android:hint="@string/RussianWordText"
+        />
 
     <Button
         android:id="@+id/AddWordButton"

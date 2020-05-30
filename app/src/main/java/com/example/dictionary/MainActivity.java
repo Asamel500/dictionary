@@ -6,6 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.Switch;
+import android.widget.TextView;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -14,9 +17,16 @@ import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
     private AdView mAdView;
     private InterstitialAd mInterstitialAd;
+    private Button[] wordButton;
+    private ArrayList<Word> allWord,iterationWordCollect;
+    private SQLLiteHelper sqlLiteHelper;
+    private Switch aSwitch;
+    private TextView textView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,8 +52,16 @@ public class MainActivity extends AppCompatActivity {
         ToAddWordActivityButton.setOnClickListener(new ToAddWordActivityOnClickListener());
         Button ToLibraryActivityButton = findViewById(R.id.library);
         ToLibraryActivityButton.setOnClickListener(new ToLibraryActivityOnClickListener());
-
-
+        wordButton = new Button[4];
+        wordButton[0] =  findViewById(R.id.Button1);
+        wordButton[1] =  findViewById(R.id.Button2);
+        wordButton[2] =  findViewById(R.id.Button3);
+        wordButton[3] =  findViewById(R.id.Button4);
+        sqlLiteHelper =new SQLLiteHelper(this);
+        aSwitch = findViewById(R.id.EnglishRussianSwitch);
+        aSwitch.setOnCheckedChangeListener(new SwitchListener());
+        textView = findViewById(R.id.TextView);
+        GenerationNewAnswer();
     }
     private class ToAddWordActivityOnClickListener implements View.OnClickListener {
 
@@ -59,6 +77,43 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View v) {
             Intent intent = new Intent(MainActivity.this, Library.class);
             startActivity(intent);
+        }
+    }
+    private class SendOnClickListener implements View.OnClickListener{
+        @Override
+        public void onClick(View v) {
+            GenerationNewAnswer();
+        }
+    }
+    private void GenerationNewAnswer() {
+        allWord = sqlLiteHelper.getAllWordOnDB();
+        if (!allWord.isEmpty()) {
+            wordButton[0].setOnClickListener(null);
+            wordButton[1].setOnClickListener(null);
+            wordButton[2].setOnClickListener(null);
+            wordButton[3].setOnClickListener(null);
+            iterationWordCollect = new ArrayList<>();
+            for (int i = 0; i <= 3 && !allWord.isEmpty(); i++) {
+                int rand = (int) (Math.random() * allWord.size());
+                iterationWordCollect.add(allWord.get(rand));
+                allWord.remove(rand);
+                if (aSwitch.isActivated())
+                    wordButton[i].setText(iterationWordCollect.get(i).getEnglishWord());
+                else wordButton[i].setText(iterationWordCollect.get(i).getRussianWord());
+            }
+            int rand = (int) (Math.random() * iterationWordCollect.size());
+            wordButton[rand].setOnClickListener(new SendOnClickListener());
+            if (aSwitch.isActivated())
+                textView.setText(iterationWordCollect.get(rand).getRussianWord());
+            else textView.setText(iterationWordCollect.get(rand).getEnglishWord());
+        }
+    }
+
+
+    private class SwitchListener implements CompoundButton.OnCheckedChangeListener {
+        @Override
+        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            GenerationNewAnswer();
         }
     }
 }
