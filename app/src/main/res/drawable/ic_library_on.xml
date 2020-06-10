@@ -1,0 +1,42 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="192dp"
+    android:height="192dp"
+    android:viewportWidth="50.8"
+    android:viewportHeight="50.8">
+  <path
+      android:pathData="M8.7786,7.5194L42.1177,7.5194A8.67,8.67 0,0 1,50.7878 16.1894L50.7878,34.2945A8.67,8.67 0,0 1,42.1177 42.9645L8.7786,42.9645A8.67,8.67 0,0 1,0.1086 34.2945L0.1086,16.1894A8.67,8.67 0,0 1,8.7786 7.5194z"
+      android:strokeWidth="0.901981"
+      android:fillColor="#ffffff"
+      android:fillAlpha="1"/>
+  <path
+      android:pathData="m6.9769,14.7507c7.8725,-3.6351 13.089,-2.0491 18.1153,0l0,21.1899c-5.9656,-2.1725 -11.9868,-1.9286 -18.1153,0z"
+      android:strokeWidth="0.249112"
+      android:fillColor="#cbcbcb"
+      android:fillAlpha="1"/>
+  <path
+      android:pathData="m25.622,14.7507c7.8725,-3.6351 13.089,-2.0491 18.1153,0l0,21.1899c-5.9656,-2.1725 -11.9868,-1.9286 -18.1153,0z"
+      android:strokeWidth="0.249112"
+      android:fillColor="#cbcbcb"
+      android:fillAlpha="1"/>
+  <path
+      android:pathData="m8.9558,15.5301c6.0652,-0.8699 10.2088,-0.5192 14.2742,0v1.0329c-4.8439,-0.7676 -9.5443,-0.552 -14.2742,0z"
+      android:strokeWidth="0.0901552"
+      android:fillColor="#ffffff"
+      android:fillAlpha="1"/>
+  <path
+      android:pathData="m8.9788,18.2475c6.0652,-0.8699 10.2088,-0.5192 14.2742,0v1.0329c-4.8439,-0.7676 -9.5443,-0.552 -14.2742,0z"
+      android:strokeWidth="0.0901552"
+      android:fillColor="#ffffff"
+      android:fillAlpha="1"/>
+  <path
+      android:pathData="m9.0633,20.9935c6.0652,-0.8699 10.2088,-0.5192 14.2742,0v1.0329c-4.8439,-0.7676 -9.5443,-0.552 -14.2742,0z"
+      android:strokeWidth="0.0901552"
+      android:fillColor="#ffffff"
+      android:fillAlpha="1"/>
+  <path
+      android:pathData="m9.0704,23.4861c5.9903,-0.8699 10.0829,-0.5192 14.0982,0v1.0329c-4.7841,-0.7676 -9.4266,-0.552 -14.0982,0z"
+      android:strokeWidth="0.0895975"
+      android:fillColor="#ffffff"
+      android:fillAlpha="1"/>
+</vector>

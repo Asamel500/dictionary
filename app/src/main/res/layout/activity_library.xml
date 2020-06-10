@@ -13,26 +13,45 @@
             android:id="@+id/topLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            android:gravity="center_horizontal">
+            android:layout_gravity="top"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <Button
+            <ImageButton
                 android:id="@+id/dictionary"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/Zero" />
-
-            <Button
+                android:layout_height="50dp"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_test_off"
+                android:background="@color/trans"
+                android:text="@string/Zero"
+                android:layout_marginRight="10dp"
+                android:layout_marginEnd="10dp">
+            </ImageButton>
+            <ImageButton
                 android:id="@+id/library"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/Zero" />
-
-            <Button
+                android:layout_height="50dp"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_library_on"
+                android:background="@color/trans"
+                android:text="@string/Zero"
+                android:layout_marginRight="10dp"
+                android:layout_marginEnd="10dp">
+            </ImageButton>
+            <ImageButton
                 android:id="@+id/AddWordAC"
+                android:src="@drawable/ic_pen_off"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/Zero" />
+                android:layout_height="50dp"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
+                android:background="@color/trans"
+                android:text="@string/Zero">
+            </ImageButton>
 
         </LinearLayout>
 

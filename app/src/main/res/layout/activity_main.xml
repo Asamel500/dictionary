@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
+    android:id="@+id/ParentLayout"
     android:theme="@style/AppTheme">
     <FrameLayout
         android:layout_width="match_parent"
@@ -16,24 +17,40 @@
         android:orientation="horizontal"
         android:gravity="center"
         android:layout_gravity="top">
-        <Button
+        <ImageButton
             android:id="@+id/dictionary"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/Zero">
-        </Button>
-        <Button
+            android:layout_height="50dp"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_test_on"
+            android:background="@color/trans"
+            android:text="@string/Zero"
+            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp">
+        </ImageButton>
+        <ImageButton
             android:id="@+id/library"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/Zero">
-        </Button>
-        <Button
+            android:layout_height="50dp"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_library_off"
+            android:background="@color/trans"
+            android:text="@string/Zero"
+            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp">
+        </ImageButton>
+        <ImageButton
             android:id="@+id/AddWordAC"
+            android:src="@drawable/ic_pen_off"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            android:background="@color/trans"
             android:text="@string/Zero">
-        </Button>
+        </ImageButton>
 
     </LinearLayout>
 
@@ -49,33 +66,36 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textSize="20sp"
-                android:text="@string/s1" />
+                android:textSize="30sp"
+                android:text="@string/Zero" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:orientation="horizontal"
                 android:layout_height="match_parent">
                 <TextView
+                    android:id="@+id/OnewView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:textSize="15sp"
                     android:text="@string/EnglishWordText"/>
                 <Switch
                     android:id="@+id/EnglishRussianSwitch"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    />
+                    android:layout_height="wrap_content" />
                 <TextView
+                    android:id="@+id/TwoView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="right"
+                    android:gravity="end"
                     android:text="@string/RussianWordText"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <Button
                 android:id="@+id/Button1"
                 android:layout_width="wrap_content"
@@ -89,7 +109,8 @@
                     android:layout_height="wrap_content"
                     android:text="@string/Zero"
                     android:layout_weight="1">
-                </Button>
+                </Button
+>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
