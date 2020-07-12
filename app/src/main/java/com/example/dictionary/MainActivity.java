@@ -1,5 +1,6 @@
 package com.example.dictionary;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.animation.ArgbEvaluator;
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView textView;
     private Timer timer;
     private TimerTask timerTask;
+    int trueAnswer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -138,6 +140,7 @@ public class MainActivity extends AppCompatActivity {
             }
             int rand = (int) (Math.random() * iterationWordCollect.size());
             wordButton[rand].setOnClickListener(new SendOnClickListener());
+            trueAnswer = rand;
             if (aSwitch.isChecked())
                 textView.setText(iterationWordCollect.get(rand).getRussianWord());
             else textView.setText(iterationWordCollect.get(rand).getEnglishWord());
@@ -174,7 +177,7 @@ public class MainActivity extends AppCompatActivity {
             GenerationNewAnswer();
         }
     }
-    {}
+
 
     private class FalseButtonOnClickListner implements View.OnClickListener {
         @Override
@@ -183,5 +186,34 @@ public class MainActivity extends AppCompatActivity {
             objectAnimator.setEvaluator(new ArgbEvaluator());
             objectAnimator.start();
         }
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("0Button", String.valueOf(wordButton[0].getText()));
+        outState.putString("1Button", String.valueOf(wordButton[1].getText()));
+        outState.putString("2Button", String.valueOf(wordButton[2].getText()));
+        outState.putString("3Button", String.valueOf(wordButton[3].getText()));
+        outState.putString("textView", String.valueOf(textView.getText()));
+        outState.putBoolean("Switch",aSwitch.isChecked());
+        outState.putInt("TrueAnswer",trueAnswer);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        wordButton[0].setText(savedInstanceState.getCharSequence("0Button"));
+        wordButton[1].setText(savedInstanceState.getCharSequence("1Button"));
+        wordButton[2].setText(savedInstanceState.getCharSequence("2Button"));
+        wordButton[3].setText(savedInstanceState.getCharSequence("3Button"));
+        boolean b = savedInstanceState.getBoolean("Switch");
+        aSwitch.setChecked(savedInstanceState.getBoolean("Switch"));
+        textView.setText(savedInstanceState.getCharSequence("textView"));
+        wordButton[0].setOnClickListener(new FalseButtonOnClickListner());
+        wordButton[1].setOnClickListener(new FalseButtonOnClickListner());
+        wordButton[2].setOnClickListener(new FalseButtonOnClickListner());
+        wordButton[3].setOnClickListener(new FalseButtonOnClickListner());
+        wordButton[savedInstanceState.getInt("TrueAnswer")].setOnClickListener(new SendOnClickListener());
     }
 }
